@@ -8,11 +8,11 @@
 		<version>3.3.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.nimble</groupId>
-	<artifactId>nimble</artifactId>
+	<groupId>br.com.cirurgia</groupId>
+	<artifactId>api-Sistema-marcacao-cirurgia</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>nimble</name>
-	<description>Projeto de backend -Gateway de pagamentos simplificado</description>
+	<name>cirurgia</name>
+	<description>Projeto de backend</description>
 
 	<properties>
 		<java.version>17</java.version>
@@ -40,12 +40,16 @@
 			<optional>true</optional>
 		</dependency>
 		<!--		banco de dados-->
+<!--		<dependency>-->
+<!--			<groupId>org.postgresql</groupId>-->
+<!--			<artifactId>postgresql</artifactId>-->
+<!--<version>42.7.5</version>-->
+<!--		</dependency>-->
 		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-<version>42.7.5</version>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<scope>runtime</scope>
 		</dependency>
-
 		<!--		validação-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
