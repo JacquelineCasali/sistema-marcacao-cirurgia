@@ -1,0 +1,27 @@
+package br.com.cirurgia.entity;
+
+import jakarta.persistence.*;
+import lombok.Data;
+
+
+@Entity
+@Table(name = "medico_cirurgia")
+@Data
+public class MedicoCirurgia {
+    @EmbeddedId
+    private MedicoCirurgiaId id;
+
+    @ManyToOne
+    @MapsId("cirurgiaId")
+    @JoinColumn(name = "MECI_ID_CIRURGIA")
+    private Cirurgia cirurgia;
+
+    @ManyToOne
+    @MapsId("medicoId")
+    @JoinColumn(name = "MECI_ID_MEDICO")
+    private Medico medico;
+
+    @Column(name = "MECI_NR_FLAG_PRINCIPAL")
+    private Boolean principal;
+}
+

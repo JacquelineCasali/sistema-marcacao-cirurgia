@@ -1,0 +1,6 @@
+package br.com.cirurgia.repository;
+
+import br.com.cirurgia.entity.Paciente;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PacienteRepository extends JpaRepository<Paciente, Integer> {}
