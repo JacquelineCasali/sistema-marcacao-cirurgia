@@ -29,5 +29,5 @@ public class Paciente {
     @OneToMany(mappedBy = "paciente")
     private List<Cirurgia> cirurgias = new ArrayList<>();
 
-    // getters e setters
+
 }

@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class InstrumentoCirurgia {
     @EmbeddedId
-    private InstrumentoCirurgiaId id;
+    private InstrumentoCirurgiaId id = new InstrumentoCirurgiaId();
 
     @ManyToOne
     @MapsId("cirurgiaId")

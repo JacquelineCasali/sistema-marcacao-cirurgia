@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/cirurgias")
+@RequestMapping("cirurgias")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class CirurgiaController {
@@ -24,16 +24,22 @@ public class CirurgiaController {
         return ResponseEntity.ok(cirurgiaService.salvar(dto));
     }
 
+
+
     @GetMapping
-    public List<Cirurgia> listar() {
-        return cirurgiaRepository.findAll();
+    public ResponseEntity<List<Cirurgia>> listarCirurgias() {
+        List<Cirurgia> cirurgias = cirurgiaService.listarCirurgias();
+        return ResponseEntity.ok(cirurgias);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Cirurgia> buscar(@PathVariable Integer id) {
-        return cirurgiaRepository.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        try {
+            Cirurgia cirurgia = cirurgiaService.buscarPorId(id);
+            return ResponseEntity.ok(cirurgia);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/{id}")

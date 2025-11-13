@@ -1,5 +1,6 @@
 package br.com.cirurgia.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -27,6 +28,7 @@ public class Cirurgia {
     private Paciente paciente;
 
     @OneToMany(mappedBy = "cirurgia", cascade = CascadeType.ALL, orphanRemoval = true)
+//    @JsonManagedReference
     private List<MedicoCirurgia> medicos = new ArrayList<>();
 
     @OneToMany(mappedBy = "cirurgia", cascade = CascadeType.ALL, orphanRemoval = true)

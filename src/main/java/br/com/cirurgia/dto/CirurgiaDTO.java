@@ -11,4 +11,5 @@ public record CirurgiaDTO(
         List<Integer> medicosIds,
         Integer medicoPrincipalId,
         List<Integer> instrumentosIds
+
 ) {}
