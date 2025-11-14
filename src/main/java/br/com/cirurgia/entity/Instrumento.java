@@ -17,6 +17,4 @@ public class Instrumento {
     @Column(name = "INST_TX_NOME", length = 45)
     private String nome;
 
-//    @ManyToMany(mappedBy = "instrumentos")
-//    private List<Cirurgia> cirurgias;
 }

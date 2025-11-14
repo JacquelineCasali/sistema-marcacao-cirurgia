@@ -9,13 +9,14 @@ import lombok.Data;
 @Table(name = "medico_cirurgia")
 @Data
 public class MedicoCirurgia {
+  // chave primaria com mais de um campo
     @EmbeddedId
     private MedicoCirurgiaId id;
 
     @ManyToOne
     @MapsId("cirurgiaId")
     @JoinColumn(name = "MECI_ID_CIRURGIA")
-//    @JsonBackReference
+    @JsonBackReference
     private Cirurgia cirurgia;
 
     @ManyToOne

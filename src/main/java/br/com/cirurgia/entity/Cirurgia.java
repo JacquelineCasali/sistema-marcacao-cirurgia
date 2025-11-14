@@ -1,8 +1,10 @@
 package br.com.cirurgia.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.apache.logging.log4j.util.Lazy;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -25,13 +27,19 @@ public class Cirurgia {
 
     @ManyToOne
     @JoinColumn(name = "PACI_ID_PACIENTE", nullable = false)
+    @JsonIgnoreProperties("cirurgias")
     private Paciente paciente;
 
-    @OneToMany(mappedBy = "cirurgia", cascade = CascadeType.ALL, orphanRemoval = true)
-//    @JsonManagedReference
+    //Lazy carrega quando acessado
+    @OneToMany(mappedBy = "cirurgia", cascade = CascadeType.ALL, orphanRemoval = true,
+    fetch = FetchType.LAZY)
+    //evitar loop infinito
+    @JsonManagedReference
     private List<MedicoCirurgia> medicos = new ArrayList<>();
 
-    @OneToMany(mappedBy = "cirurgia", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "cirurgia", cascade = CascadeType.ALL,
+            orphanRemoval = true,fetch = FetchType.EAGER)
+    @JsonManagedReference
     private List<InstrumentoCirurgia> instrumentos = new ArrayList<>();
 }
 

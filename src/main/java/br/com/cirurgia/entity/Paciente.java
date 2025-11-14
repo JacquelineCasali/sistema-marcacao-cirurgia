@@ -1,12 +1,17 @@
 package br.com.cirurgia.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import lombok.Data;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "paciente")
+@Data
 public class Paciente {
 
     @Id
@@ -26,8 +31,7 @@ public class Paciente {
     private String cid;
 
 
-    @OneToMany(mappedBy = "paciente")
-    private List<Cirurgia> cirurgias = new ArrayList<>();
-
-
+    @OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY)
+    @JsonIgnore // <-- adiciona isso
+    private List<Cirurgia> cirurgias;
 }

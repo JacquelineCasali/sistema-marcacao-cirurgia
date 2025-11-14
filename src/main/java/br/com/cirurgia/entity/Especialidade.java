@@ -1,5 +1,6 @@
 package br.com.cirurgia.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,7 +19,9 @@ public class Especialidade {
     @Column(name = "ESPE_TX_DESCRICAO", length = 45)
     private String descricao;
 
-    @OneToMany(mappedBy = "especialidade")
+//    @OneToMany(mappedBy = "especialidade", fetch = FetchType.LAZY)
+@OneToMany(mappedBy = "especialidade")
+@JsonIgnore
     private List<Medico> medicos = new ArrayList<>();
 
 }

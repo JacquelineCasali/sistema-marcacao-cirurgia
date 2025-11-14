@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public record CirurgiaDTO(
-        Integer id,
+        Long id,
         LocalDateTime dataCirurgia,
         Integer pacienteId,
         String descricao,

@@ -1,10 +1,13 @@
 package br.com.cirurgia.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
+
 import java.util.List;
 
 @Entity
 @Table(name = "medico")
+@Data
 public class Medico {
 
     @Id
@@ -24,9 +27,6 @@ public class Medico {
     @JoinColumn(name = "ESPE_ID_ESPECIALIDADE", nullable = false)
     private Especialidade especialidade;
 
-//    @ManyToMany(mappedBy = "medicos")
-//    private List<Cirurgia> cirurgias;
 
-
-}
+  }
 

@@ -1,5 +1,6 @@
 package br.com.cirurgia.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -13,6 +14,7 @@ public class InstrumentoCirurgia {
     @ManyToOne
     @MapsId("cirurgiaId")
     @JoinColumn(name = "INCI_ID_CIRURGIA")
+    @JsonBackReference
     private Cirurgia cirurgia;
 
     @ManyToOne
