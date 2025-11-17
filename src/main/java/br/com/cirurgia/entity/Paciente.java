@@ -32,6 +32,6 @@ public class Paciente {
 
 
     @OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY)
-    @JsonIgnore // <-- adiciona isso
+    @JsonIgnore
     private List<Cirurgia> cirurgias;
 }

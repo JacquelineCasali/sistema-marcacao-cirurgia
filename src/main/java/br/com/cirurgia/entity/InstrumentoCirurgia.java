@@ -1,6 +1,7 @@
 package br.com.cirurgia.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -8,8 +9,10 @@ import lombok.Data;
 @Table(name = "instrumento_cirurgia")
 @Data
 public class InstrumentoCirurgia {
+
+    @JsonIgnore
     @EmbeddedId
-    private InstrumentoCirurgiaId id = new InstrumentoCirurgiaId();
+    private InstrumentoCirurgiaId id;
 
     @ManyToOne
     @MapsId("cirurgiaId")

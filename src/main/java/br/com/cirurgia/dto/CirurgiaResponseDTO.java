@@ -12,8 +12,9 @@ public record CirurgiaResponseDTO(
         LocalDateTime dataCirurgia,
         String descricao,
         Paciente paciente,
-        List<Medico> medico,
         Medico medicoPrincipal,
+        List<Medico> medico,
+
         List<Instrumento> instrumentos
 
 ) {

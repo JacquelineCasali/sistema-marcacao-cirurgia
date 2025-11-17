@@ -1,6 +1,7 @@
 package br.com.cirurgia.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -9,8 +10,10 @@ import lombok.Data;
 @Table(name = "medico_cirurgia")
 @Data
 public class MedicoCirurgia {
+//ignora na resposta do json
+  @JsonIgnore
   // chave primaria com mais de um campo
-    @EmbeddedId
+       @EmbeddedId
     private MedicoCirurgiaId id;
 
     @ManyToOne
