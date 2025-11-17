@@ -10,6 +10,8 @@ import br.com.cirurgia.repository.CirurgiaRepository;
 import br.com.cirurgia.repository.InstrumentoRepository;
 import br.com.cirurgia.repository.MedicoRepository;
 import br.com.cirurgia.repository.PacienteRepository;
+import br.com.cirurgia.utils.ValidadorMedicoComOutraCirugiaNoMesmoHorario;
+import br.com.cirurgia.utils.ValidadorPacienteComOutraCirurgiaNoMesmoDia;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,10 +30,18 @@ public class CirurgiaService {
     @Autowired
     private InstrumentoRepository instrumentoRepository;
 
-
-
+    @Autowired
+    private ValidadorPacienteComOutraCirurgiaNoMesmoDia pacienteValidator;
+    @Autowired
+    private ValidadorMedicoComOutraCirugiaNoMesmoHorario cirurgiaValidator;
     @Transactional
     public Cirurgia salvar(CirurgiaDTO dto) {
+
+        // Valida paciente
+        pacienteValidator.validatePacienteNoMesmoDia(dto.pacienteId(), dto.dataCirurgia());
+
+        // medico no mesmo dia e horario
+        cirurgiaValidator.validateMedicosNoMesmoHorario(dto.medicosIds(), dto.dataCirurgia());
 
 
             //cria a cirurgia
@@ -118,12 +128,20 @@ public class CirurgiaService {
     //atulizar
         @Transactional
     public CirurgiaResponseDTO atualizarCirurgia(Long id, CirurgiaDTO dto) {
+
+
+
         // Busca cirurgia existente
         Cirurgia cirurgia = cirurgiaRepository.findById(id)
                 .orElseThrow(() ->new CampoNotFoundException("Cirurgia id:", id));
+            // Valida paciente
+            pacienteValidator.validatePacienteNoMesmoDia(dto.pacienteId(), dto.dataCirurgia());
+
+            // medico no mesmo dia e horario
+            cirurgiaValidator.validateMedicosNoMesmoHorario(dto.medicosIds(), dto.dataCirurgia());
 
 
-        // Atualiza dados básicos
+            // Atualiza dados básicos
         cirurgia.setDataCirurgia(dto.dataCirurgia());
         cirurgia.setDescricao(dto.descricao());
 
