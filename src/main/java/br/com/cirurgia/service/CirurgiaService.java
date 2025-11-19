@@ -111,7 +111,7 @@ public class CirurgiaService {
     //LISTAR
     @Transactional
     public List<CirurgiaResponseDTO> listarCirurgias() {
-        return cirurgiaRepository.findAll().stream()
+        return cirurgiaRepository.findAllByOrderByDataCirurgiaDesc().stream()
                 .map(CirurgiaMapper::mapParaDTO)
                 .toList();
     }

@@ -9,6 +9,10 @@ import java.util.List;
 
 public interface CirurgiaRepository extends JpaRepository<Cirurgia, Long> {
 
+    // ordenar pela data da cirurgia
+    List<Cirurgia> findAllByOrderByDataCirurgiaDesc();
+
+
    //regra nao marcar cirurgia para o mesmo paciente no mesmo dia e no mesmo horário?
    @Query("""
     SELECT c.paciente.nome 
