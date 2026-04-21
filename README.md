@@ -1,6 +1,10 @@
 # 🏥 API de Gestão de Cirurgias
 
-API REST para gerenciamento de cirurgias hospitalares, desenvolvida com **Spring Boot**, com foco em regras de negócio, controle de agenda médica e integridade dos dados.
+API REST para gerenciamento de cirurgias hospitalares, desenvolvida com Spring Boot, com foco em regras de negócio, controle de agenda médica e consistência dos dados.
+
+## 📌 Contexto do Projeto
+
+Projeto desenvolvido com foco em simular um sistema real de gestão hospitalar, abordando regras complexas de agenda médica e controle de relacionamentos entre entidades.
 
 Permite cadastrar, atualizar, consultar e excluir cirurgias, com associação de pacientes, médicos e instrumentos cirúrgicos.
 
@@ -45,7 +49,7 @@ Permite cadastrar, atualizar, consultar e excluir cirurgias, com associação de
 - Separação de responsabilidades por camada
 - Uso de entidades intermediárias (MedicoCirurgia, InstrumentoCirurgia)
 - Regras de negócio centralizadas na camada de serviço
-- Garantia de consistência e integridade dos dados
+- Garantia de consistência dos dados e integridade das relações
 
 ---
 
@@ -56,11 +60,14 @@ Permite cadastrar, atualizar, consultar e excluir cirurgias, com associação de
 ```sql
 CREATE DATABASE cirurgias;
 ```
+## 🗄 Modelagem do Banco de Dados
+
+<img width="897" height="338" alt="image" src="https://github.com/user-attachments/assets/bc41fc92-d613-4f3b-8908-d3d25431150b" />
 
 ### 📌 Configuração
 
 No arquivo application.yml ou application.properties:
-
+```bash
 spring.datasource.url=jdbc:mysql://localhost:3306/cirurgias
 
 spring.datasource.username=seu_usuario
@@ -68,7 +75,7 @@ spring.datasource.username=seu_usuario
 spring.datasource.password=sua_senha
 
 spring.jpa.hibernate.ddl-auto=update
-
+```
 ### 📌 Executar aplicação
 
 ```bash
